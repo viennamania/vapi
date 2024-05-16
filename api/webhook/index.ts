@@ -21,7 +21,9 @@ export default async (req: VercelRequest, res: VercelResponse) => {
     }
     try {
       const payload = req.body.message as VapiPayload;
+      
       console.log("type", payload.type, payload);
+
       switch (payload.type) {
         case VapiWebhookEnum.FUNCTION_CALL:
           return res.status(201).json(await functionCallHandler(payload));

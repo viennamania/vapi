@@ -29,6 +29,7 @@ export const assistantRequestHandler = async (
           temperature: 0.7,
 
           messages: [systemMessage],
+
           functions: [
             {
               name: "sendEmail",
@@ -58,7 +59,9 @@ export const assistantRequestHandler = async (
         firstMessage: "Hi, I'm Paula, your personal email assistant.",
       }
     : null;
+
   if (assistant) return { assistant };
 
   throw new Error(`Invalid call details provided.`);
+  
 };
