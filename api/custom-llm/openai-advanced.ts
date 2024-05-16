@@ -25,7 +25,10 @@ export default async (req: VercelRequest, res: VercelResponse) => {
 
     const lastMessage = messages?.[messages.length - 1];
     const prompt = await openai.completions.create({
-      model: "gpt-3.5-turbo-instruct",
+      
+      //model: "gpt-3.5-turbo-instruct",
+      model: "gpt-4o",
+
       prompt: `
         Create a prompt which can act as a prompt templete where I put the original prompt and it can modify it according to my intentions so that the final modified prompt is more detailed.You can expand certain terms or keywords.
         ----------
@@ -42,7 +45,8 @@ export default async (req: VercelRequest, res: VercelResponse) => {
 
     if (stream) {
       const completionStream = await openai.chat.completions.create({
-        model: model || "gpt-3.5-turbo",
+        //model: model || "gpt-3.5-turbo",
+        model: "gpt-4o",
         ...restParams,
         messages: modifiedMessage,
         max_tokens: max_tokens || 150,
@@ -59,7 +63,8 @@ export default async (req: VercelRequest, res: VercelResponse) => {
       res.end();
     } else {
       const completion = await openai.chat.completions.create({
-        model: model || "gpt-3.5-turbo",
+        //model: model || "gpt-3.5-turbo",
+        model: "gpt-4o",
         ...restParams,
         messages: modifiedMessage,
         max_tokens: max_tokens || 150,
